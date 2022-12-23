@@ -2,6 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose",);
 const ejs = require("ejs");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
+const DB_KEY = process.env.DB_KEY;
+const DB_PASS = process.env.DB_PASS;
 
 const app = express();
 
@@ -12,7 +18,7 @@ app.use(express.static("public"));
 
 // MongoDB Connection
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb+srv://dbadmin:jkmq9x25@atlascluster.bsfuaqw.mongodb.net/wikiDB', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true});
 
 // MongoDB Schema
 const articleSchema = {
